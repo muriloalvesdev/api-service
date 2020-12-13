@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,11 +36,15 @@ class UserServiceTest implements UserConstantsForTests {
   private JwtProvider jwtProvider;
   private AuthenticationManager authenticationManager;
   private Role role;
+  private HashSet<Role> roles;
 
   @BeforeEach
   void setUp() {
     role = new Role(RoleName.ROLE_ADMIN);
     role.setId(1L);
+    this.roles = new HashSet<>();
+    roles.add(role);
+
     this.userRepository = mock(UserRepository.class);
     this.roleRepository = mock(RoleRepository.class);
     this.encoder = mock(PasswordEncoder.class);
@@ -77,7 +81,7 @@ class UserServiceTest implements UserConstantsForTests {
     user.setName(FIRST_NAME);
     user.setLastName(LAST_NAME);
     user.setPassword(PASSWORD_ENCRYPT);
-    user.setRoles(Set.of(this.role));
+    user.setRoles(roles);
 
     // when
     BDDMockito.when(this.userRepository.existsByEmail(Mockito.anyString()))

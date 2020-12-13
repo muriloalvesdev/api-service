@@ -1,6 +1,6 @@
 package br.com.api.provider;
 
-import java.util.Set;
+import java.util.HashSet;
 import java.util.UUID;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -18,7 +18,9 @@ public class UserDetailsProviderTest implements ArgumentsProvider, UserConstants
   public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
     User user = new User(UUID.randomUUID(), FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
     Role role = new Role(RoleName.ROLE_ADMIN);
-    user.setRoles(Set.of(role));
+    HashSet<Role> roles = new HashSet<>();
+    roles.add(role);
+    user.setRoles(roles);
     return Stream.of(UserDTO.build(user)).map(Arguments::of);
   }
 }

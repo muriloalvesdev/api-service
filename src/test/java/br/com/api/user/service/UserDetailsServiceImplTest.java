@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +29,12 @@ class UserDetailsServiceImplTest implements UserConstantsForTests {
 
   private UserDetailsService service;
   private UserRepository userRepository;
+  private HashSet<Role> roles;
 
   @BeforeEach
   void setUp() {
+    this.roles = new HashSet<>();
+    this.roles.add(new Role(RoleName.ROLE_ADMIN));
     this.userRepository = mock(UserRepository.class);
     this.service = new UserDetailsServiceImpl(this.userRepository);
   }
@@ -41,8 +44,7 @@ class UserDetailsServiceImplTest implements UserConstantsForTests {
   void loadUserByUserNameWithSuccess(UserDetails userDetails) {
     // given
     User user = new User(UUID.randomUUID(), FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
-    Role role = new Role(RoleName.ROLE_ADMIN);
-    user.setRoles(Set.of(role));
+    user.setRoles(this.roles);
     // when
     BDDMockito.when(this.userRepository.findByEmail(EMAIL)).thenReturn(Optional.of(user));
 
