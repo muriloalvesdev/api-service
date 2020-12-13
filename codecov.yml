@@ -5,3 +5,8 @@ codecov:
   - "src/main/java/br/com/api/config"
   - "src/main/java/br/com/api/controller/handler"
   - "src/main/java/br/com/api/exception"
+  - "src/main/java/br/com/api/user/dto"
+  - "src/main/java/br/com/api/user/model"
+  - "src/main/java/br/com/api/user/repository"
+  - "src/main/java/br/com/api/user/resource"
+  - "src/main/java/br/com/api/user/utils"
