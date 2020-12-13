@@ -1,0 +1,7 @@
+codecov:
+  token: "af82c8d0-6782-403d-9549-82ad4bea1602"
+  
+  ignore:
+  - "src/main/java/br/com/api/config"
+  - "src/main/java/br/com/api/controller/handler"
+  - "src/main/java/br/com/api/exception"
