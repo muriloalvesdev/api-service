@@ -9,6 +9,13 @@ services:
   - rabbitmq
   - h2database
 
+env:
+ global:
+   - CODECOV_TOKEN="af82c8d0-6782-403d-9549-82ad4bea1602"
+
 script:
   - chmod +x .ci/script.sh
   - ./.ci/script.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
