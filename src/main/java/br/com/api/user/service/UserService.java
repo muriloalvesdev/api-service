@@ -1,6 +1,8 @@
 package br.com.api.user.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,7 @@ import br.com.api.exception.ExistingEmailException;
 import br.com.api.exception.IllegalRoleException;
 import br.com.api.user.dto.LoginDTO;
 import br.com.api.user.dto.RegisterDTO;
+import br.com.api.user.dto.UserDTO;
 import br.com.api.user.model.AccessToken;
 import br.com.api.user.model.Role;
 import br.com.api.user.model.Role.RoleName;
@@ -39,18 +42,59 @@ public class UserService {
   private final JwtProvider jwtProvider;
   private final AuthenticationManager authenticationManager;
 
-  public User registerUser(RegisterDTO registerDTO) {
+  public void delete(String email) {
+    User user = this.findByEmail(email);
+    this.userRepository.delete(user);
+  }
+
+  public UserDTO find(String email) {
+    return UserDTO.build(this.findByEmail(email));
+  }
+
+  public List<UserDTO> find() {
+    List<UserDTO> dtos = new ArrayList<>();
+    this.userRepository.findAll().forEach(user -> {
+      dtos.add(UserDTO.build(user));
+    });
+    return dtos;
+  }
+
+  public UserDTO update(RegisterDTO registerDTO) {
+    User user = this.findByEmail(registerDTO.getEmail());
+    user.setName(registerDTO.getName().toUpperCase());
+    user.setLastName(registerDTO.getLastName().toUpperCase());
+    user.setPassword(this.encoder.encode(registerDTO.getPassword()));
+
+    Set<String> strRoles = registerDTO.getRole();
+    Set<Role> roles = new HashSet<>();
+
+    setRoles(strRoles, roles);
+    user.setRoles(roles);
+
+    this.userRepository.saveAndFlush(user);
+    return UserDTO.build(user);
+  }
+
+  public User register(RegisterDTO registerDTO) {
 
     if (this.userRepository.existsByEmail(registerDTO.getEmail())) {
       throw new ExistingEmailException(EMAIL_IS_ALREADY);
     }
 
-    User user = new User(UUID.randomUUID(), registerDTO.getName(), registerDTO.getLastName(),
-        registerDTO.getEmail(), this.encoder.encode(registerDTO.getPassword()));
+    User user = new User(UUID.randomUUID(), registerDTO.getName().toUpperCase(),
+        registerDTO.getLastName().toUpperCase(), registerDTO.getEmail(),
+        this.encoder.encode(registerDTO.getPassword()));
 
     Set<String> strRoles = registerDTO.getRole();
     Set<Role> roles = new HashSet<>();
 
+    setRoles(strRoles, roles);
+
+    user.setRoles(roles);
+    return this.userRepository.saveAndFlush(user);
+  }
+
+  private void setRoles(Set<String> strRoles, Set<Role> roles) {
     strRoles.forEach(role -> {
       switch (role.toLowerCase()) {
         case "admin":
@@ -62,9 +106,6 @@ public class UserService {
           throw new IllegalRoleException(ROLE_INVALID);
       }
     });
-
-    user.setRoles(roles);
-    return this.userRepository.saveAndFlush(user);
   }
 
   public AccessToken authenticateUser(LoginDTO loginDto) {
@@ -75,5 +116,10 @@ public class UserService {
         new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
     SecurityContextHolder.getContext().setAuthentication(authentication);
     return new AccessToken(this.jwtProvider.generateJwtToken(authentication));
+  }
+
+  private User findByEmail(String email) {
+    return this.userRepository.findByEmail(email)
+        .orElseThrow(() -> new EmailNotFoundException(EMAIL_NOT_FOUND));
   }
 }
