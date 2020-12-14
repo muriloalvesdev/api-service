@@ -6,7 +6,6 @@ jdk:
   - oraclejdk13
 
 services:
-  - rabbitmq
   - h2database
 
 env:
