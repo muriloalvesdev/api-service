@@ -20,7 +20,6 @@ import br.com.api.user.dto.RegisterDTO;
 @SpringBootTest
 class UserControllerIntegrationTests implements UserConstantsForTests {
 
-
   @Autowired
   private WebApplicationContext webApplicationContext;
 
