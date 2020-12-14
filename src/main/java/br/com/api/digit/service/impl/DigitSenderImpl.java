@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import br.com.api.digit.resource.Resource;
 import br.com.api.digit.service.DigitSender;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class DigitSenderImpl implements DigitSender {
 
@@ -29,10 +31,11 @@ public class DigitSenderImpl implements DigitSender {
   public Resource calculete(String digit, String quantity) {
     String uri = this.baseUri.concat(digit).concat("/").concat(quantity).concat("/")
         .concat(this.authentication);
+    log.info("Send request to URI [{}]", uri);
     HttpHeaders httpHeaders = createHttpHeaders();
     HttpEntity<Object> httpEntity = createHttpEntity(httpHeaders);
-    System.out.println("fazendo request");
     Long result = this.restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Long.class).getBody();
+    log.info("Response: {}", result);
     return new Resource(result);
   }
 
