@@ -95,6 +95,6 @@ http://localhost:8082/api/digit/9875/4
 Exemplo response:
 ```
 {
-    "result": 8
+    "response": 8
 }
 ```
