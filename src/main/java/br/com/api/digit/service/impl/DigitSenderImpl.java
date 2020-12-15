@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import br.com.api.digit.resource.Resource;
 import br.com.api.digit.service.DigitSender;
+import br.com.api.exception.DigitInvalidException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,6 +30,9 @@ public class DigitSenderImpl implements DigitSender {
 
   @Cacheable("result")
   public Resource calculete(String digit, String quantity) {
+    if (!checkNumber(Double.valueOf(digit))) {
+      throw new DigitInvalidException(digit);
+    }
     String uri = this.baseUri.concat(digit).concat("/").concat(quantity).concat("/")
         .concat(this.authentication);
     log.info("Send request to URI [{}]", uri);
@@ -37,6 +41,11 @@ public class DigitSenderImpl implements DigitSender {
     Long result = this.restTemplate.exchange(uri, HttpMethod.GET, httpEntity, Long.class).getBody();
     log.info("Response: {}", result);
     return new Resource(result);
+  }
+
+  private static boolean checkNumber(double num) {
+    int digit = (int) num;
+    return (((double) digit) == num);
   }
 
   private HttpHeaders createHttpHeaders() {
