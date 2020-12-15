@@ -24,6 +24,12 @@ public class HandlerException extends ResponseEntityExceptionHandler {
         .body(createResponse(ex.getMessage(), NOT_FOUND.value()));
   }
 
+  @ExceptionHandler(DigitInvalidException.class)
+  public ResponseEntity<ApiException> handleDigitInvalidException(DigitInvalidException ex) {
+    return ResponseEntity.status(BAD_REQUEST)
+        .body(createResponse(ex.getMessage(), BAD_REQUEST.value()));
+  }
+
   @ExceptionHandler(ExistingEmailException.class)
   public ResponseEntity<ApiException> handleExistingEmailException(ExistingEmailException ex) {
     return ResponseEntity.status(CONFLICT).body(createResponse(ex.getMessage(), CONFLICT.value()));
