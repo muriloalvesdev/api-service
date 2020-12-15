@@ -10,3 +10,4 @@ codecov:
   - "src/main/java/br/com/api/user/repository"
   - "src/main/java/br/com/api/user/resource"
   - "src/main/java/br/com/api/user/utils"
+  - "src/main/java/br/com/api/digit/resource"
