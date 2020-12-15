@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import br.com.api.controller.handler.resource.ApiException;
+import br.com.api.exception.DigitInvalidException;
 import br.com.api.exception.EmailNotFoundException;
 import br.com.api.exception.ExistingEmailException;
 import br.com.api.exception.IllegalRoleException;
