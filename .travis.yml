@@ -3,7 +3,7 @@ dist: trusty
 language: java
 
 jdk:
-  - oraclejdk13
+  - oraclejdk8
 
 services:
   - h2database
