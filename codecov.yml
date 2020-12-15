@@ -4,6 +4,7 @@ codecov:
   ignore:
   - "src/main/java/br/com/api/config"
   - "src/main/java/br/com/api/controller/handler"
+  - "src/main/java/br/com/api/controller/handler/resource"
   - "src/main/java/br/com/api/exception"
   - "src/main/java/br/com/api/user/dto"
   - "src/main/java/br/com/api/user/model"
