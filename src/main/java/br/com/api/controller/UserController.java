@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import br.com.api.user.dto.LoginDTO;
-import br.com.api.user.dto.RegisterDTO;
-import br.com.api.user.dto.UserDTO;
-import br.com.api.user.model.AccessToken;
-import br.com.api.user.model.User;
+import br.com.api.domain.model.AccessToken;
+import br.com.api.domain.model.User;
+import br.com.api.dto.LoginDTO;
+import br.com.api.dto.RegisterDTO;
+import br.com.api.dto.UserDTO;
 import br.com.api.user.service.UserService;
 import lombok.AllArgsConstructor;
 

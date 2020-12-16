@@ -19,10 +19,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import br.com.api.constants.UserConstantsForTests;
+import br.com.api.domain.model.AccessToken;
+import br.com.api.dto.LoginDTO;
+import br.com.api.dto.RegisterDTO;
 import br.com.api.provider.RegisterDTOProviderTests;
-import br.com.api.user.dto.LoginDTO;
-import br.com.api.user.dto.RegisterDTO;
-import br.com.api.user.model.AccessToken;
 
 @SpringBootTest
 class UserControllerIntegrationTests implements UserConstantsForTests {

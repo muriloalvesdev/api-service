@@ -1,4 +1,4 @@
-package br.com.api.user.model;
+package br.com.api.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

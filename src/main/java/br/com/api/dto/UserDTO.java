@@ -1,14 +1,16 @@
-package br.com.api.user.dto;
+package br.com.api.dto;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import javax.validation.constraints.Email;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import br.com.api.user.model.User;
+import br.com.api.domain.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,13 +22,22 @@ import lombok.Setter;
 public class UserDTO implements UserDetails {
   private static final long serialVersionUID = -5745731685321252631L;
 
+  @NonNull
   private UUID id;
+  
+  @NonNull
   private String name;
+  
+  @NonNull
   private String lastName;
+  
+  @NonNull
+  @Email
   private String email;
   @JsonIgnore
   private String password;
-
+  
+  @NonNull
   private Collection<? extends GrantedAuthority> authorities;
 
   public static UserDTO build(User user) {

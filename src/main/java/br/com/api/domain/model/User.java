@@ -1,4 +1,4 @@
-package br.com.api.user.model;
+package br.com.api.domain.model;
 
 import java.util.Date;
 import java.util.Set;
@@ -8,10 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import br.com.api.user.utils.Utils;
+import br.com.api.utils.Utils;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
@@ -61,10 +59,6 @@ public class User {
   @UpdateTimestamp
   @Temporal(TemporalType.TIMESTAMP)
   private Date updatedAt;
-
-  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JoinColumn(name = "token_password_id", unique = true)
-  private TokenEntity token;
 
   public User(UUID id, String name, String lastName, String email, String password) {
     setId(id);
@@ -148,18 +142,10 @@ public class User {
     return updatedAt;
   }
 
-  public TokenEntity getToken() {
-    return token;
-  }
-
-  public void setToken(TokenEntity token) {
-    this.token = token;
-  }
-
   @Override
   public String toString() {
     return "User [id=" + id + ", name=" + name + ", lastName=" + lastName + ", email=" + email
         + ", password=" + password + ", roles=" + roles + ", createdAt=" + createdAt
-        + ", updatedAt=" + updatedAt + ", token=" + token + "]";
+        + ", updatedAt=" + updatedAt + "]";
   }
 }

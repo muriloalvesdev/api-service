@@ -1,5 +1,6 @@
-package br.com.api.user.dto;
+package br.com.api.dto;
 
+import org.springframework.lang.NonNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class LoginDTO {
 
+  @NonNull
   private String email;
+  @NonNull
   private String password;
 
   @Override

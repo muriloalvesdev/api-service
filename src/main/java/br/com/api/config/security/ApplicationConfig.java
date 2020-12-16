@@ -5,9 +5,9 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import br.com.api.user.model.Role;
-import br.com.api.user.model.Role.RoleName;
-import br.com.api.user.repository.RoleRepository;
+import br.com.api.domain.model.Role;
+import br.com.api.domain.model.Role.RoleName;
+import br.com.api.domain.repository.RoleRepository;
 
 @Configuration
 public class ApplicationConfig {

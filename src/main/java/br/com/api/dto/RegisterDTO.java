@@ -1,19 +1,26 @@
-package br.com.api.user.dto;
+package br.com.api.dto;
 
 import java.util.Set;
 import javax.validation.constraints.Email;
+import org.springframework.lang.NonNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RegisterDTO {
 
+  @NonNull
   private String name;
 
+  @NonNull
   @JsonProperty("lastname")
   private String lastName;
 
   @Email
   private String email;
+  
+  @NonNull
   private Set<String> role;
+  
+  @NonNull
   private String password;
 
   public RegisterDTO(String name, String lastName, @Email String email, Set<String> role,

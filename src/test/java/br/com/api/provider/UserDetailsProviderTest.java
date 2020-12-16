@@ -7,10 +7,10 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import br.com.api.constants.UserConstantsForTests;
-import br.com.api.user.dto.UserDTO;
-import br.com.api.user.model.Role;
-import br.com.api.user.model.Role.RoleName;
-import br.com.api.user.model.User;
+import br.com.api.domain.model.Role;
+import br.com.api.domain.model.User;
+import br.com.api.domain.model.Role.RoleName;
+import br.com.api.dto.UserDTO;
 
 public class UserDetailsProviderTest implements ArgumentsProvider, UserConstantsForTests {
 

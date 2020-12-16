@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import br.com.api.constants.UserConstantsForTests;
-import br.com.api.user.dto.LoginDTO;
+import br.com.api.dto.LoginDTO;
 
 public class LoginDTOProviderTest implements ArgumentsProvider, UserConstantsForTests {
 

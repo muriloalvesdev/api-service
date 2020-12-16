@@ -1,4 +1,4 @@
-package br.com.api.user.utils;
+package br.com.api.utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

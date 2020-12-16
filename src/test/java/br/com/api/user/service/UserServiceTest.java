@@ -21,17 +21,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import br.com.api.config.jwt.JwtProvider;
 import br.com.api.constants.UserConstantsForTests;
+import br.com.api.domain.model.Role;
+import br.com.api.domain.model.User;
+import br.com.api.domain.model.Role.RoleName;
+import br.com.api.domain.repository.RoleRepository;
+import br.com.api.domain.repository.UserRepository;
+import br.com.api.dto.RegisterDTO;
+import br.com.api.dto.UserDTO;
 import br.com.api.exception.EmailNotFoundException;
 import br.com.api.exception.ExistingEmailException;
 import br.com.api.exception.IllegalRoleException;
 import br.com.api.provider.RegisterDTOProviderTests;
-import br.com.api.user.dto.RegisterDTO;
-import br.com.api.user.dto.UserDTO;
-import br.com.api.user.model.Role;
-import br.com.api.user.model.Role.RoleName;
-import br.com.api.user.model.User;
-import br.com.api.user.repository.RoleRepository;
-import br.com.api.user.repository.UserRepository;
 
 class UserServiceTest implements UserConstantsForTests {
 

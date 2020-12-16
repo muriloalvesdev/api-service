@@ -18,12 +18,12 @@ import org.mockito.Mockito;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import br.com.api.constants.UserConstantsForTests;
+import br.com.api.domain.model.Role;
+import br.com.api.domain.model.User;
+import br.com.api.domain.model.Role.RoleName;
+import br.com.api.domain.repository.UserRepository;
 import br.com.api.exception.EmailNotFoundException;
 import br.com.api.provider.UserDetailsProviderTest;
-import br.com.api.user.model.Role;
-import br.com.api.user.model.Role.RoleName;
-import br.com.api.user.model.User;
-import br.com.api.user.repository.UserRepository;
 
 class UserDetailsServiceImplTest implements UserConstantsForTests {
 
