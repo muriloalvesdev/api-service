@@ -46,7 +46,9 @@ class DigitSenderImpl implements DigitSender {
 
   private void persist(String digit, String quantity, String username, Long result) {
     UniqueDigit uniqueDigit = new UniqueDigit(UUID.randomUUID(), username, digit, quantity, result);
-    this.repository.save(uniqueDigit);
+    if (!this.repository.existsUsername(username)) {
+      this.repository.save(uniqueDigit);
+    }
   }
 
   private Long sendRequest(String digit, String quantity) {
