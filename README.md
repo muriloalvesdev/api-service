@@ -97,4 +97,4 @@ Exemplo response:
 ```
 
 ## Heroku
-- Você pode utilizar a URL da aplicação hospedada no Heroku também. URL da api-service: `https://api-service-pt.herokuapp.com/`
+- Você pode utilizar a URL da aplicação hospedada no Heroku também. URL da api-service: `https://api-service-pt.herokuapp.com/swagger-ui.html`
