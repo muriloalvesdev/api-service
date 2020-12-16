@@ -7,5 +7,5 @@ import br.com.api.domain.model.UniqueDigit;
 
 public interface UniqueDigitRepository extends JpaRepository<UniqueDigit, UUID> {
   List<UniqueDigit> findByUsername(String username);
-  Boolean existsUsername(String username);
+  Boolean existsByUsername(String username);
 }
