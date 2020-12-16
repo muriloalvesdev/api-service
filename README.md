@@ -95,3 +95,6 @@ Exemplo response:
     "response": 8
 }
 ```
+
+## Heroku
+- Você pode utilizar a URL da aplicação hospedada no Heroku também. URL da api-service: `https://api-service-pt.herokuapp.com/`
